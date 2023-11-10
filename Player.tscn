@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://cwbyuvei8g26n"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_7nkf6"]
+[ext_resource type="Texture2D" uid="uid://brg70jm4ihp6v" path="res://zelda-like-1_player_spritesheet.png" id="2_m0qty"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kd0qr"]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dac0o"]
+atlas = ExtResource("2_m0qty")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpf0y"]
+atlas = ExtResource("2_m0qty")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_715vv"]
+atlas = ExtResource("2_m0qty")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6jdp"]
+atlas = ExtResource("2_m0qty")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64lux"]
+atlas = ExtResource("2_m0qty")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i63l1"]
+atlas = ExtResource("2_m0qty")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_svwfi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dac0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpf0y")
+}],
+"loop": true,
+"name": &"WalkDown",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_715vv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6jdp")
+}],
+"loop": true,
+"name": &"WalkSide",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64lux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i63l1")
+}],
+"loop": true,
+"name": &"WalkUp",
+"speed": 6.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_7nkf6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_kd0qr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_svwfi")
+animation = &"WalkUp"
+autoplay = "WalkDown"
